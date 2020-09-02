@@ -12,7 +12,10 @@ pessoas.
 
 3. Tudo dentro do programa em inglês, desde os nomes das variáveis até comentários.
 
-4. Toda função deve conter a seguinte descrição:  (Exemplo prático abaixo)
+4. A [PEP8](https://pep8.org/) são um conjunto de regras para Python que descrevem como fazer
+um código legível.
+
+5. Toda função deve conter a seguinte descrição:  (Exemplo prático abaixo)
 
     - Um pequeno texto descrevendo o que a função faz.
     - Parâmetros com o tipo da variável e o que ela representa.
