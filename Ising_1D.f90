@@ -3,7 +3,7 @@ Module Variaveis
   Integer*4, Parameter :: L = 40;
   Integer*4, Parameter :: nsitios = L;
   Integer*4, Parameter :: mc_steps = int(1e6);
-  Integer*4, Parameter :: term_steps = 1000 * L * L;
+  Integer*4, Parameter :: term_steps = 100 * L * L;
   Real*8, Parameter :: Temp_ini = 3.0d0;
   Real*8, parameter :: dt = 0.1d0;
   Integer*4, Parameter :: temp_steps = 1
@@ -27,10 +27,14 @@ Program Main
   Use Variaveis
   Implicit None
 
+  Integer*4 seed(33)
+
   Allocate(S(nsitios), rx(nsitios), ry(nsitios), viz(nsitios * 2))
   Allocate(E(mc_steps), M(mc_steps))
 
   ! Call init_random_seed()
+  seed = 314687480
+  call random_seed(put=seed)
 
   Call conf_ini
 
@@ -93,7 +97,7 @@ Subroutine energia_ini
   Integer*4 i
   
   ener = 0.0d0
-  
+
   Do i = 1, nsitios
 
     ener = ener - S(i) * S(viz(2 * (i - 1) + 1))
@@ -113,6 +117,7 @@ Subroutine monte_carlo
   Do k = 1, nsitios
 
     dE = 2.0d0 * S(k) * (S(viz(2 * (k - 1) + 1)) + S(viz(2 * (k - 1) + 2)));
+
 
     if( dE < 0.0d0 )then
 
